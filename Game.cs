@@ -63,7 +63,7 @@ class Game
     }
     public char check_win()
     {
-        for (int i = 0; i < game_mode.board_size[mode]; i++)
+        for (int i = 0; i < game_mode.board_size[mode]; i++) //cycle whole board
         {
             for (int j = 0; j < game_mode.board_size[mode]; j++)
             {
@@ -71,30 +71,30 @@ class Game
                 {
                     break;
                 }
-                char mark = board[i][j];
+                char mark = board[i][j];//mark to check
                 if (mark == ' ') //to stop checking if empty tile won :D
                 {
-                    mark='?'; //set it to sopmething that wont ever happen
+                    mark = '?'; //set it to sopmething that wont ever happen ?????
                 }
                 int max_x = Math.Min(j + game_mode.length_to_win[mode], game_mode.board_size[mode]);
                 int max_y = Math.Min(i + game_mode.length_to_win[mode], game_mode.board_size[mode]);
-                //horizontal
+
                 int count = 0;
-                for (int k = j; k < max_x; k++)
+                for (int k = j; k < max_x; k++) //horizontal
                 {
-                    if (board[i][k] != mark)
+                    if (board[i][k] != mark) //not the mark we are checking 
                     {
                         break;
                     }
-                    count++;
-                    if (count == game_mode.length_to_win[mode])
+                    count++; //it is
+                    if (count == game_mode.length_to_win[mode]) //won   
                     {
                         return mark;
                     }
                 }
-                count = 0;
-                //vertical
-                for (int k = i; k < max_y; k++)
+                count = 0; //reset count
+
+                for (int k = i; k < max_y; k++) //vertical 
                 {
                     if (board[k][j] != mark)
                     {
@@ -107,15 +107,34 @@ class Game
                     }
                 }
                 count = 0;
-                //diagonal
-                for (int k = 0; k < game_mode.length_to_win[mode]; k++)
+
+                for (int k = 0; k < game_mode.length_to_win[mode]; k++) //diagonal rigth down
                 {
-                    if (i+k >= game_mode.board_size[mode] || j+k >= game_mode.board_size[mode])
+                    if (i + k >= game_mode.board_size[mode] || j + k >= game_mode.board_size[mode])
                     {
                         break;
                     }
-                    
-                    if (board[i+k][j+k] != mark)
+
+                    if (board[i + k][j + k] != mark)
+                    {
+                        break;
+                    }
+                    count++;
+                    if (count == game_mode.length_to_win[mode])
+                    {
+                        return mark;
+                    }
+                }
+
+                count = 0;
+                for (int k = 0; k < game_mode.length_to_win[mode]; k++) //diagonal left down
+                {
+                    if (i + k >= game_mode.board_size[mode] || j - k < 0)
+                    {
+                        break;
+                    }
+
+                    if (board[i + k][j - k] != mark)
                     {
                         break;
                     }

@@ -8,7 +8,7 @@ class ttt_client
     public Player player;
     stream_reader reader;
     Game game;
-    int state = 0; //0 = not in game, 1 = in game
+    int state = 0; //0 = not in game, 1 = in game, 2 = your turn
     public ttt_client(SimpleTcpClient created_client, string name, string mode)
     {
         this.mode = mode;
@@ -188,7 +188,7 @@ class ttt_client
                 }
                 client.Send("mode;" + tmp+ "|");
             }
-            if (key_press.Key == ConsoleKey.P && (state != 0)) // put mark if not ingame
+            if (key_press.Key == ConsoleKey.P && (state != 0)) // put mark if ingame
             {
                 if (state != 2)
                 {

@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "client": {
+      "commandName": "Project",
+      "commandLineArgs": "c n GONDOR mode 2_3_3 h"
+    },
+    "server": {
+      "commandName": "Project",
+      "commandLineArgs": "s"
+    }
+  }
+}
